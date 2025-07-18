@@ -1,6 +1,7 @@
 # Three_tierapplication
 
 ✅ Documented Three-Tier Architecture with ALB for Backend Tier
+
 ✅ 1️⃣ High-Level Architecture Recap
 Tier	Components
 Presentation Tier	Frontend EC2 (Nginx/HTML)
