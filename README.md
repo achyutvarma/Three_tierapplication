@@ -76,7 +76,7 @@ Important:
 Do not expose Backend EC2 public IP.
 Only ALB DNS Name is used to access it.
 
-✅ 4️⃣ Frontend EC2 Configuration
+## ✅ 4️⃣ Frontend EC2 Configuration
 Host static HTML or JS page.
 
 Replace backend endpoint in frontend script with Backend ALB DNS Name:
@@ -87,7 +87,7 @@ Replace backend endpoint in frontend script with Backend ALB DNS Name:
 Frontend EC2 Security Group:
 Allow HTTP (80) from anywhere.
 
-✅ 5️⃣ Validation Process
+## ✅ 5️⃣ Validation Process
 Check ALB Target Group Health:
 Should show healthy targets.
 
