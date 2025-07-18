@@ -93,3 +93,19 @@ Should show healthy targets.
 
 Open Frontend EC2 Public IP or Domain:
 Should display message fetched from backend via ALB.
+
+## ✅ If You See:
+
+- Blank Page / 404:
+
+Frontend server might not be running or configured incorrectly.
+Check frontend app logs and verify service is running.
+
+- 502/504 Gateway Timeout:
+
+Likely frontend can’t reach backend or backend can’t reach database.
+check security groups, VPC settings, and internal DNS resolution.
+
+- Connection Refused:
+
+Firewall/Security group/Listener missing or port not exposed.
