@@ -109,3 +109,47 @@ check security groups, VPC settings, and internal DNS resolution.
 - Connection Refused:
 
 Firewall/Security group/Listener missing or port not exposed.
+
+## No data from backend
+Welcome to the Three-Tier App!
+Loading data from backend...
+But no message from backend. That means the fetch() call in your frontend is failing.
+
+# ✅ How to Fix It
+
+- 1️⃣ Update the Fetch URL to Point to the Backend ALB DNS Name
+Instead of:
+fetch('http://<backend-ip>:5000/data')
+Use:
+fetch('http://alb-backend-xyz.us-east-1.elb.amazonaws.com/data')
+Make sure this backend ALB is accessible from the internet (or at least from wherever you’re opening the frontend).
+
+- 2️⃣ Ensure Backend ALB Listener Is on Port 80 or 443
+If the backend ALB only listens on port 80 or 443, do not try to fetch on port 5000 directly. Use only:
+
+http://alb-backend-xyz.us-east-1.elb.amazonaws.com/data
+- 3️⃣ Ensure CORS Settings Allow Frontend Requests
+If the backend is Flask, you need CORS headers.
+Install Flask-CORS in your backend:
+
+pip install flask-cors
+In app.py:
+
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app)
+That allows browsers to fetch from different origins without blocking.
+
+## Mysql commands:
+Step-by-Step SQL Command:
+- 1️⃣ Log in to MySQL:
+mysql -u <username> -p
+
+- 2️⃣ Select your database:
+  USE three_tier_db;
+  
+- 3️⃣ Insert a new row:
+INSERT INTO messages (message) VALUES ('This is a new message!');
+
+- 4️⃣ Verify it was added:
+SELECT * FROM messages;
