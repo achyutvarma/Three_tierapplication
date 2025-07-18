@@ -54,7 +54,7 @@
 ### 3️⃣ Security Groups:
 
 - **ALB Security Group:** Allow HTTP 80 from anywhere
-- **Backend EC2 Security Group:** Allow HTTP 5000 from ALB security group only
+- **Backend EC2 Security Group:** Allow HTTP 80 from ALB security group only
 
 ---
 
@@ -76,6 +76,14 @@ Important:
 Do not expose Backend EC2 public IP.
 Only ALB DNS Name is used to access it.
 
+Set env variables: DB_HOST, DB_USER, DB_PASSWORD, DB_NAME
+Install Python and requirements
+
+Make sure you have nat gateway:
+
+NAT Gateway: In public subnet, attached to Elastic IP.
+Route Table: Private subnet route → 0.0.0.0/0 via NAT Gateway.
+
 ## ✅ 4️⃣ Frontend EC2 Configuration
 Host static HTML or JS page.
 
@@ -86,6 +94,10 @@ Replace backend endpoint in frontend script with Backend ALB DNS Name:
 
 Frontend EC2 Security Group:
 Allow HTTP (80) from anywhere.
+
+Install Nginx, place index.html under /var/www/html/
+
+Update the <backend-ip> in index.html to your backend private IP
 
 ## ✅ 5️⃣ Validation Process
 Check ALB Target Group Health:
@@ -141,6 +153,8 @@ CORS(app)
 That allows browsers to fetch from different origins without blocking.
 
 ## Mysql commands:
+Connect to 
+mysql -h rds-endpoint -u admin -p
 Step-by-Step SQL Command:
 - 1️⃣ Log in to MySQL:
 mysql -u <username> -p
@@ -153,3 +167,10 @@ INSERT INTO messages (message) VALUES ('This is a new message!');
 
 - 4️⃣ Verify it was added:
 SELECT * FROM messages;
+
+# Note:
+- To connect to ec2 in private subnet use ssh -i "keypair.pem" ubuntu@privateip from public subnet make sure the backensg have access from frontend-sg from 22.
+
+- Also make sure the rdsg has inbound access port 3306 from backend-sg
+
+
