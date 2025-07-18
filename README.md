@@ -68,8 +68,6 @@ Example:
 fetch("http://<backend-ALB-DNS-Name>/data")
 Frontend EC2 Security Group: Allow HTTP (80) from anywhere
 
-
-
 ✅ 5️⃣ Validation Process
 Check ALB Target Group health → Should show healthy targets.
 
