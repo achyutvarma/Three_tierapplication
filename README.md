@@ -69,7 +69,8 @@ fetch("http://<backend-ALB-DNS-Name>/data")
 Frontend EC2 Security Group: Allow HTTP (80) from anywhere
 
 
-  ✅ 5️⃣ Validation Process
+
+✅ 5️⃣ Validation Process
 Check ALB Target Group health → Should show healthy targets.
 
 Open Frontend EC2 public IP or domain → Should display message fetched from backend via ALB.
